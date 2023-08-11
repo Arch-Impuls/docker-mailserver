@@ -70,7 +70,7 @@ services:
   # Incoming spam is (hopefully) filtered by rspamd which runs
   # in this service.
   filter:
-    image: jeboehm/mailserver:filter-latest
+    image: archimpuls/mailserver:filter-latest
     build: ./filter
     restart: on-failure:5
     env_file: .env
