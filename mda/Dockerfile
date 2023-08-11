@@ -2,7 +2,7 @@ FROM jwilder/dockerize:0.6.1 AS dockerize
 FROM alpine:3.17
 
 LABEL maintainer="jeff@ressourcenkonflikt.de"
-LABEL vendor="https://github.com/jeboehm/docker-mailserver"
+LABEL vendor="https://github.com/archimpuls/docker-mailserver"
 LABEL de.ressourcenkonflikt.docker-mailserver.autoheal="true"
 
 ENV MYSQL_HOST=db \
