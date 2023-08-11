@@ -10,14 +10,11 @@ then
     exit 1
 fi
 
-for component in $COMPONENTS
-do
-    docker tag jeboehm/mailserver-$component:latest jeboehm/mailserver-$component:${VERSION}
+docker tag archimpuls/mailserver:latest archimpuls/mailserver:${VERSION}
     
-    if [ "${VERSION}" != "next" ]
-    then
-        docker push jeboehm/mailserver-$component:latest
-    fi
-    
-    docker push jeboehm/mailserver-$component:${VERSION}
-done
+if [ "${VERSION}" != "next" ]
+then
+    docker push archimpuls/mailserver:latest
+fi
+
+docker push archimpuls/mailserver:${VERSION}
