@@ -37,8 +37,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: archimpuls
+          password: dckr_pat_J4js9aab611c_q7tYohiO7NU9xo
 
       - name: Push images (new tag)
         run: |
