@@ -10,11 +10,14 @@ then
     exit 1
 fi
 
-docker tag archimpuls/mailserver:latest archimpuls/mailserver:${VERSION}
+for component in $COMPONENTS
+do
+    docker tag archimpuls/mailserver:$component-latest archimpuls/mailserver:$component-${VERSION}
     
-if [ "${VERSION}" != "next" ]
-then
-    docker push archimpuls/mailserver:latest
-fi
-
-docker push archimpuls/mailserver:${VERSION}
+    if [ "${VERSION}" != "next" ]
+    then
+        docker push archimpuls/mailserver:$component-latest
+    fi
+    
+    docker push archimpuls/mailserver:$component-${VERSION}
+done
