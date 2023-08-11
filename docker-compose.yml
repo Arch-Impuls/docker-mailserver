@@ -4,7 +4,7 @@ services:
   # Creates self signed tls certificates. Remove if you
   # use your own.
   ssl:
-    image: jeboehm/mailserver-ssl:latest
+    image: archimpuls/mailserver:ssl-latest
     build: ./ssl
     env_file: .env
     volumes:
@@ -13,7 +13,7 @@ services:
   # Responsible for storing users and their aliases. Remove
   # if you already have a MySQL server.
   db:
-    image: jeboehm/mailserver-db:latest
+    image: archimpuls/mailserver:db-latest
     build: ./db
     restart: on-failure:5
     env_file: .env
@@ -23,7 +23,7 @@ services:
   # The Mail Transfer Agent (Postfix) receives incoming mail
   # on TCP port 25.
   mta:
-    image: jeboehm/mailserver-mta:latest
+    image: archimpuls/mailserver:mta-latest
     build: ./mta
     restart: on-failure:5
     env_file: .env
@@ -38,7 +38,7 @@ services:
   # incoming mail into a users mailbox and also delivers them
   # via POP3 or IMAP4.
   mda:
-    image: jeboehm/mailserver-mda:latest
+    image: archimpuls/mailserver:mda-latest
     build: ./mda
     restart: on-failure:5
     env_file: .env
@@ -53,7 +53,7 @@ services:
   # The admin (mailserver-admin) and webmail (roundcube) interfaces
   # live here. Can be removed if not needed.
   web:
-    image: jeboehm/mailserver-web:latest
+    image: archimpuls/mailserver:web-latest
     build:
       context: ./web
       args:
@@ -70,7 +70,7 @@ services:
   # Incoming spam is (hopefully) filtered by rspamd which runs
   # in this service.
   filter:
-    image: jeboehm/mailserver-filter:latest
+    image: jeboehm/mailserver:filter-latest
     build: ./filter
     restart: on-failure:5
     env_file: .env
@@ -83,7 +83,7 @@ services:
   # Incoming viruses or malware is detected and rejected by
   # this service. Can be removed if FILTER_VIRUS is set to false.
   virus:
-    image: jeboehm/mailserver-virus:latest
+    image: archimpuls/mailserver:virus-latest
     build: ./virus
     restart: on-failure:5
     env_file: .env
