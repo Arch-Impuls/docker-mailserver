@@ -44,8 +44,3 @@ jobs:
         run: |
           .ci/bin/push_image_version.sh ${{ steps.tag_version.outputs.new_tag }}
         if: github.ref == 'refs/heads/main'
-
-      - name: Push images (next)
-        run: |
-          .ci/bin/push_image_version.sh next
-        if: github.ref == 'refs/heads/next'
