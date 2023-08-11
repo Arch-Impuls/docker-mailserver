@@ -1,6 +1,24 @@
 #!/bin/sh
 set -e
 
+for _var in $(env | cut -f1 -d"="); do
+    case $_var in (*_FILE)
+		# echo "_var : >"$_var"<"
+		
+		_key="${_var%_FILE}"
+		# echo "_key : >"$_key"<"
+		
+		eval "_path=\$$_var"
+		# echo "_path : >"$_path"<"
+		
+		_value="$(cat "$_path")"
+		# echo "_value : >"$_value"<"
+		
+        echo "$_key" set to "$_value"
+		export "$_key"="$_value"
+    ;;esac
+done
+
 postconf myhostname="${MAILNAME}"
 postconf mynetworks="${MYNETWORKS}"
 postconf recipient_delimiter="${RECIPIENT_DELIMITER}"
